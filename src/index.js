@@ -26,7 +26,8 @@ function minifyPromise (svgo, decl) {
                 return cb(null, o);
             });
         };
-        replace(isUriEncoded ? decodeURIComponent(decl.value) : decl.value, /url\(("|')?(.*)\1\)/g, minify, (err, result) => {
+        replace(isUriEncoded ? decode(decl.value) : decl.value,
+            /url\(("|')?(.*)\1\)/g, minify, (err, result) => {
             decl.value = result;
             resolve();
         });
